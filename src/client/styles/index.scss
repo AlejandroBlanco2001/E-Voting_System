@@ -1,0 +1,189 @@
+//@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+$main-font: "Poppins";
+$breakpoint: 800px;
+
+*{
+
+    font-family: 'Poppins', sans-serif;
+}
+h2,h4,p{
+    font-family: $main-font;
+    color:black;
+}
+
+body{
+    background-color: white;
+    margin: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    list-style: none;
+}
+
+.sideA{
+    flex: 0.5;
+}
+
+.sideB{
+    flex: 0.5;
+}
+
+.block{
+    display: inline-block;
+    //box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;    height: 650px;
+}
+
+.OutisdeNames{
+    margin-top:40px;
+    text-align: center;
+}
+
+.infoCard{
+    //height: 500px;  
+    width: 100%px;
+    padding: 10px;
+    text-align: center;
+ 
+    border-radius: 20px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+     img{ 
+    //margin-top: 15px;    
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.infoCard:hover{
+    transition: all 0.3s;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+@media (max-width: $breakpoint){
+    #steps{
+        flex-direction: column;
+    }
+}
+
+#stepsBlock{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    figure{
+        width: 50%;
+        
+        img{
+            width: 120% ;
+        }
+    }
+}
+
+#steps {
+    display: grid;
+   // grid-template-rows: repeat(2, 400px);
+    grid-template-columns: repeat(2, 400px);
+    place-content: center;
+    justify-content: center;
+    place-items: center;
+    gap: 20px;
+    align-items: center;
+    //height: 100%;
+    width: 100%;
+}
+
+#cardTwoFactor{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    padding: 20px;
+    p{
+        font-size:30px;
+        
+    }
+  
+}
+
+
+#TwoFactorText{
+    background-color:#dbedff ;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+width: 50%;
+padding: 20px;
+   }
+#cardAboutUs{
+    display: flex;
+    width: 100%;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+    h2{
+        color: black; 
+        text-align: center;
+    }
+    p{
+        font-size: 20px;
+        overflow-wrap: break-word; 
+    }
+}
+
+#imageTwoFactor{
+    width: 60%;
+    height: 100%;
+}
+p {
+    em{
+        color: white;
+        font-weight: bold;
+    }
+}
+#imageAboutUs{
+    width: 100%;
+    height: 100%;
+}   
+
+
+#AboutUsText{
+    margin-right: 50px;
+
+    //margin-top: 80px;
+    background-color:   #dbedff;
+    width: 60%;
+    padding: 30px;
+    height: auto;
+    text-align: center;
+    p{
+        text-align: justify;
+        font-size:30px;
+    }
+}
+
+#main-nav{
+    //margin-top:40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    li{
+        font-family: $main-font;
+        font-weight: 400;
+        float: left;
+        margin:20px;
+        padding: 10px;
+
+        
+
+    }
+    li:hover{
+        border: 1px solid gray;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+}
+
