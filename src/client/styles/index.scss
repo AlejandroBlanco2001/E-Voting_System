@@ -2,10 +2,23 @@
 $main-font: "Poppins";
 $breakpoint: 800px;
 
+html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 *{
 
     font-family: 'Poppins', sans-serif;
 }
+
+p {
+    em{
+        color: white;
+        font-weight: bold;
+    }
+}
+
 h2,h4,p{
     font-family: $main-font;
     color:black;
@@ -35,6 +48,8 @@ ul{
 
 .block{
     display: inline-block;
+    margin-top: 100px;
+    width: 100%;
     //box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;    height: 650px;
 }
 
@@ -48,10 +63,10 @@ ul{
     width: 100%px;
     padding: 10px;
     text-align: center;
- 
+
     border-radius: 20px;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-     img{ 
+    img{ 
     //margin-top: 15px;    
         width: 100px;
         height: 100px;
@@ -61,6 +76,30 @@ ul{
 .infoCard:hover{
     transition: all 0.3s;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+#Footer{
+    margin-top: 60px;
+    width: 100%;
+    height: 70px;
+    display: block;
+    background-color: #E1F6FB;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+#carouselBlock{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top:20px;
+    margin-left: 450px;
+    width: 50%;
+}
+
+#Carrousel{
+    width: 1250px;
 }
 
 @media (max-width: $breakpoint){
@@ -103,10 +142,10 @@ ul{
     justify-content: center;
     padding: 20px;
     p{
-        font-size:30px;
+        font-size:20px;
         
     }
-  
+
 }
 
 
@@ -114,14 +153,14 @@ ul{
     background-color:#dbedff ;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 
-width: 50%;
-padding: 20px;
-   }
+    width: 50%;
+    padding: 20px;
+}
+
 #cardAboutUs{
     display: flex;
     width: 100%;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-
+    
     h2{
         color: black; 
         text-align: center;
@@ -135,13 +174,10 @@ padding: 20px;
 #imageTwoFactor{
     width: 60%;
     height: 100%;
+    margin-top: 30px;
+    margin-left: 100px;
 }
-p {
-    em{
-        color: white;
-        font-weight: bold;
-    }
-}
+
 #imageAboutUs{
     width: 100%;
     height: 100%;
@@ -150,17 +186,27 @@ p {
 
 #AboutUsText{
     margin-right: 50px;
+    margin-top: 100px;
+    box-shadow: rgb(17 12 46 / 15%) 0px 48px 100px 0px;
 
     //margin-top: 80px;
     background-color:   #dbedff;
-    width: 60%;
-    padding: 30px;
-    height: auto;
+    width: 50%;
+    padding: 20px;
+    height: 80%;
     text-align: center;
     p{
         text-align: justify;
-        font-size:30px;
     }
+}
+
+#cardVote{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #main-nav{

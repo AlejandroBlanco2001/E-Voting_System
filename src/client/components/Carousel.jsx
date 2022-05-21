@@ -2,8 +2,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Candidates from "../assets/candidates.jpg";
-import Info from "../assets/info_vote.jpg";
+import Panfleto from "../assets/panfleto_.png";
+import Tarjeton from "../assets/tarjeton.png";
 import DateVote from "../assets/date.jpg";
 
 export default class Fade extends Component {
@@ -14,7 +14,6 @@ export default class Fade extends Component {
       lazyLoad: true,
       speed: 500,
       slidesToShow: 1,
-      variableWidth: true,
       slidesToScroll: 1,
       responsive:[
         {
@@ -45,16 +44,16 @@ export default class Fade extends Component {
       ]
     };
     return (
-      <div>
+      <div id="Carrousel">
         <Slider {...settings}>
           <div>
             <img src={DateVote} alt="date_image"/>
           </div>
           <div>
-            <img src={Candidates} alt="date_image"/>
+            <img src={Panfleto} alt="date_image"/>
           </div>
           <div>
-            <img src={Info} alt="date_image"/>
+            <img src={Tarjeton} alt="date_image"/>
           </div>
 
         </Slider>
