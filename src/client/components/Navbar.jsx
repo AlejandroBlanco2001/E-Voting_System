@@ -13,7 +13,8 @@ const Navbar = () => {
               offset={-70}
               duration={500}
             >
-HOME            </Link>
+              HOME{" "}
+            </Link>
           </li>
           <li>
             <Link
@@ -21,7 +22,7 @@ HOME            </Link>
               to="guide"
               spy={true}
               smooth={true}
-              offset={-70}
+              offset={-190}
               duration={500}
             >
               GUIDE TO VOTE
@@ -33,7 +34,7 @@ HOME            </Link>
               to="two"
               spy={true}
               smooth={true}
-              offset={-230}
+              offset={-210}
               duration={500}
             >
               2FA
@@ -42,10 +43,22 @@ HOME            </Link>
           <li>
             <Link
               activeClass="active"
+              to="blockchain"
+              spy={true}
+              smooth={true}
+              offset={-240}
+              duration={500}
+            >
+              SMART CONTRACT
+            </Link>
+          </li>
+          <li>
+            <Link
+              activeClass="active"
               to="about"
               spy={true}
               smooth={true}
-              offset={-230}
+              offset={-270}
               duration={500}
             >
               ABOUT US
@@ -60,7 +73,7 @@ HOME            </Link>
               offset={-70}
               duration={500}
             >
-            <em>VOTE</em>
+              <em>VOTE</em>
             </Link>
           </li>
         </ul>
