@@ -13,7 +13,7 @@ const Navbar = () => {
               offset={-70}
               duration={500}
             >
-              HOME{" "}
+              HOME
             </Link>
           </li>
           <li>
@@ -25,7 +25,7 @@ const Navbar = () => {
               offset={-190}
               duration={500}
             >
-              GUIDE TO VOTE
+              COMO VOTAR
             </Link>
           </li>
           <li>
@@ -61,7 +61,7 @@ const Navbar = () => {
               offset={-270}
               duration={500}
             >
-              ABOUT US
+              SOBRE NOSOTROS
             </Link>
           </li>
           <li>
@@ -73,7 +73,7 @@ const Navbar = () => {
               offset={-70}
               duration={500}
             >
-              <em>VOTE</em>
+              <em>VOTA</em>
             </Link>
           </li>
         </ul>

@@ -4,6 +4,7 @@ import Carrusel from "../components/Carousel"
 import Button from "@mui/material/Button";
 import {Element} from 'react-scroll'
 
+
 import About from '../assets/about.png'
 import TwoFactor from "../assets/two_fact.png";
 import Votar from "../assets/votar.png"
@@ -32,12 +33,12 @@ const Start = () => {
               nuestro país.
             </p>
             <p>¡Juntos podemos lograr un futuro mejor para todos!</p>
-            <Button variant="outlined" href="#outlined-buttons">
+            <Button variant="outlined" href="/login">
               Vota
             </Button>
           </div>
         </div>
-        <h2 class="OutisdeNames">How to vote</h2>
+        <h2 class="OutisdeNames">COMO VOTAR</h2>
         <Element class="block" id="stepsBlock" name="guide">
           <figure>
             <img src={Vote} alt="" />
@@ -156,7 +157,7 @@ const Start = () => {
             <h3>
               Comienza a ejercer tu <em>derecho</em> de voto por tu candidato
             </h3>
-            <Button variant="outlined" href="#outlined-buttons">
+            <Button variant="outlined" href="/login">
               Vota
             </Button>
           </div>

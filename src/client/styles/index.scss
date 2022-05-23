@@ -2,6 +2,7 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 $main-font: "Poppins";
 $breakpoint: 800px;
+$blueMain: #4B6190;
 
 html, body{
     max-width: 100%;
@@ -15,7 +16,7 @@ html, body{
 
 p {
     em{
-        color: #4B6190;
+        color: $blueMain;
         font-weight: bold;
     }
 }
@@ -124,12 +125,44 @@ ul{
 
 .carousel-item{
     img{
-    width: 100%;
+        width: 100%;
     }
 }
 
 
+#loginForm{
+    background-color: $blueMain;
+    display:flex;
+    width: 600px;
+    height: 600px;
+    flex-direction: column;
+    gap:50px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+    margin-top: 10%;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    
+    h3{
+        font-family: $main-font;
+        color: white;
+    }
+
+    button{
+        background-color: white;
+        color: black;
+        font-family: $main-font;
+    }
+
+    input{
+        color:white;
+        font-size: 20px
+    }
+}
+
 #textCarrousel{
+    text-align: justify;
     margin-left: 60px;
     width: 500px;
 }
