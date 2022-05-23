@@ -46,7 +46,7 @@ const Start = () => {
           <div id="steps">
             <div class="infoCard">
               <img src={Identificate} alt="some_image"></img>
-              <h4>Sonificas</h4>
+              <h4>Zonificar</h4>
               <p>
                 Dirigite a un modelo de tal cual para que podamos registrar tu
                 participación en nuestro sistema
