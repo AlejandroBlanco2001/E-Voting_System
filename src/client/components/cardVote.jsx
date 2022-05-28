@@ -1,10 +1,14 @@
-import axios from "axios";
+import axios from 'axios'
+
+const sendVote = () =>{
+  return this.name
+} 
 
 const VoteCard = ({name, description, party, img}) => {
 
     return (
       <div>
-        <div class="candidatesCard">
+        <div class="candidatesCard" onClick={sendVote}>
           <div class="imageContainer">
             <img src={img} alt="candidate"></img>
           </div>

@@ -9,6 +9,10 @@ const Vote = () => {
   const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState();
 
+  const isLogged = () => {
+    axios.get("http://localhost:8000/auth/checkUser");
+  }
+
   const sendForm = (event) => {
     axios.post("http://localhost:8000/votes/send",{
 
