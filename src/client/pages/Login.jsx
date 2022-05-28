@@ -1,8 +1,10 @@
 import "../styles/index.scss";
 import { Input } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom" 
+import { useNavigate } from "react-router-dom"
+import swal from 'sweetalert2'
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
+import Gobernacion from "../assets/gobernación.png"
 import axios from "axios";
 
 const Login = () => {
@@ -37,10 +39,17 @@ const Login = () => {
       .then((res) => {
         console.log(res)
         if(res.data.message === "OK"){
-          alert("LOGGED IN")
+          localStorage.setItem('user', data.username)
           navigate("../Vote", {replace: true})
-        }else{
-          alert("ERROR")
+        }else{           
+          swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            timer: 6000,
+            showConfirmButton: false,
+            footer: 'Maybe you insert your password or user wrong, try again',
+          });
         }
       })
       .catch((err) => {});
@@ -49,6 +58,10 @@ const Login = () => {
   return (
     <div>
       <div id="loginForm">
+        <div id="imageDecorator">
+          <img src={Gobernacion} alt="gobernación"></img>
+        </div>
+        <div class="verticalLine1"></div>
         <form onSubmit={sendForm}>
           <h3>Usuario</h3>
           <Input

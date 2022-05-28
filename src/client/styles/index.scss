@@ -7,7 +7,6 @@ html, body{
     max-width: 100%;
     width: 100%;
     height: 100%;
-    max-height: 100%;
     overflow-x: hidden;
 }
 
@@ -69,6 +68,13 @@ ul{
     height: 200px; 
     overflow: hidden; 
     border-radius: 50%;
+}
+
+.verticalLine1{
+    border-left: 1px solid grey;
+    height: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .candidatesCard{
@@ -181,34 +187,43 @@ ul{
     }
 }
 
-
 #loginForm{
-    background-color: $blueMain;
     display:flex;
-    width: 600px;
-    height: 600px;
-    flex-direction: column;
-    gap:50px;
-    justify-content: center;
+    height: 500px;
+    width: 900px;
+    flex-direction: row;
+    gap:30px;
+    justify-content: space;
     align-items: center;
-    margin-left: 30%;
-    margin-top: 10%;
+    margin-left: 490px;
+    margin-top: 11%;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     
+    form{
+        margin-right: 30px;
+    }
+
+    img{
+        margin-left: 40px;
+        height: 100%;
+        width: 500px;
+    }
+
     h3{
         font-family: $main-font;
-        color: white;
+        color: black;
     }
 
     button{
-        background-color: white;
-        color: black;
+        margin-top: 20px;
+        background-color: #0061AC;
+        color: white;
         font-family: $main-font;
     }
 
     input{
-        color:white;
+        color:black;
         font-size: 20px
     }
 }
