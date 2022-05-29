@@ -7,9 +7,9 @@ const db = require("../database/query/db.js");
 
 var session;
 
-router.post('/create', async (req, res) => {
+router.post('/create', async(req, res) => {
     const { username, password } = req.body
-    const secret = authenticator.generateSecret()    
+    const secret = authenticator.generateSecret()
     const test = await db.createUser(username,"test@gmail.com",password,"123123123",secret);
     qrCode.toDataURL(authenticator.keyuri(username, "2FA Node App", secret), (err, url) => {
         if (err) {
@@ -32,6 +32,7 @@ router.post('/login', async (req, res) => {
     if (sw.rows.length !== 0) {
         const secret_query = 0 //Secret of the query
         if (!authenticator.check(secret,secret_query)){
+            res.sendStatus(500)
         }
         session = req.session;
         session.userid = req.body.username;
