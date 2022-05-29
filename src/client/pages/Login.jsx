@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState(false)
   const [data, setData] = useState({})
   const [open, setOpen] = useState(false)
+  const [action, setAction] = useState(true)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const handleError = () => setError(false)
@@ -26,33 +27,54 @@ const Login = () => {
   
   const sendForm = async (event) => {
     event.preventDefault();
-    console.log("Enviando datos..." + data.username + " " + data.password);
-    await axios
-      .post(
-        "http://localhost:8000/auth/login",
-        {
-          username: data.username,
-          password: data.password,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res)
-        if(res.data.message === "OK"){
-          localStorage.setItem('user', data.username)
-          navigate("../Vote", {replace: true})
-        }else{           
+    if(action === true){
+      console.log("Enviando datos..." + data.username + " " + data.password);
+      await axios
+        .post(
+          "http://localhost:8000/auth/login",
+          {
+            username: data.username,
+            password: data.password,
+          },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res)
+          if(res.data.message === "OK"){
+            localStorage.setItem('user', data.username)
+            navigate("../Vote", {replace: true})
+          }else{           
+            swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              timer: 6000,
+              showConfirmButton: false,
+              footer: 'Maybe you insert your password or user wrong, try again',
+            })
+          }
+        })
+        .catch((err) => {})
+    }else{
+      console.log("Enviando datos..." + data.username + " " + data.password);
+      await axios
+        .post(
+          "http://localhost:8000/auth/create",
+          {
+            username: data.username,
+            password: data.password,
+          },
+          { withCredentials: true}
+        ).then((res) => {
           swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            timer: 6000,
-            showConfirmButton: false,
-            footer: 'Maybe you insert your password or user wrong, try again',
-          });
-        }
-      })
-      .catch((err) => {});
+              icon: "succesfull",
+              title: "Welcome",
+              text: "You are registred for the elections!",
+              timer: 6000,
+              showConfirmButton: false,
+            });
+        })
+    }
   };
 
   return (
@@ -78,7 +100,13 @@ const Login = () => {
             size="medium"
             onChange={handleInputChange}
           ></Input>
-          <Button type="submit">Log in</Button>
+          <Button 
+          type="submit" 
+          onClick={() => setAction(true)}>Log in</Button>
+          <Button 
+          type="submit" 
+          onClick={() => setAction(false)}
+          >Register</Button>
         </form>
       </div>
     </div>

@@ -54,7 +54,8 @@ const Vote = () => {
         })}
       </div>
       <form onSubmit={sendForm}>
-        <Button type="submit">Log in</Button>
+        <Button type="submit" value="Login">Log in</Button>
+        <Button type="submit" value="Register">Register</Button>
       </form>
     </div>
   );

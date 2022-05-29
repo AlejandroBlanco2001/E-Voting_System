@@ -1,9 +1,9 @@
-const pool = require('../conn/pool.js')
+const pool = require('../conn/pool')
 
 async function searchUser(username, password) {
     // eslint-disable-next-line no-multi-str
     var query = "SELECT * FROM usuario WHERE (usuario = '" + username + "' AND passwd = '" + password + "')\
-     OR (email = '" + username + "' AND passwd = '" + password + "')";
+    OR (email = '" + username + "' AND passwd = '" + password + "')";
     var result = await pool.query(query);
     if (result.rows.length === 0) {
         return false;
