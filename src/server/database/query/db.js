@@ -5,11 +5,11 @@ async function searchUser(username, password) {
     var query = "SELECT * FROM usuario WHERE (usuario = '" + username + "' AND passwd = '" + password + "')\
     OR (email = '" + username + "' AND passwd = '" + password + "')";
     var result = await pool.query(query);
-    if (result.rows.length === 0) {
-        return false;
-    } else {
-        return true;
-    }
+    return result
+}
+
+async function giveAllUsers(){
+    return await pool.query("SELECT * FROM usuario")
 }
 
 async function createUser(username, email, password, numeroDocu, secret) {
@@ -39,5 +39,6 @@ async function createEleccion(nombre, fechaInicio, fechaFin) {
 module.exports = {
     searchUser,
     createUser,
-    createEleccion
+    createEleccion,
+    giveAllUsers,
 }
