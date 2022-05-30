@@ -19,10 +19,10 @@ router.post('/create', async (req, res) => {
     })
 })
 
-router.get('/all', async (req,res) => {
+router.get('/all', async(req, res) => {
     const sw = await db.giveAllUsers()
     console.log(sw);
-    res.json({message:"OK"})
+    res.json({ message: "OK" })
 })
 
 router.post('/login', async (req, res) => {

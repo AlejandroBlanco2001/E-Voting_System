@@ -21,13 +21,12 @@ async function searchUser(username,password, cedula) {
     return [compare, result.rows[0].secret]
 }
 
-async function giveAllUsers(){
+async function giveAllUsers() {
     return await pool.query("SELECT * FROM usuario")
 }
 
 async function createUser(username, numeroDocu, password, secret) {
-    // eslint-disable-next-line no-multi-str
-    var query = `INSERT INTO usuario VALUES ('${username}','${numeroDocu}','${password}','${secret}');`
+    var query = `INSERT INTO usuario VALUES ('${username}', '${numeroDocu}', '${password}', '${secret}')`;
     try {
         await pool.query(query);
         return true;
@@ -48,10 +47,54 @@ async function createEleccion(nombre, fechaInicio, fechaFin) {
     }
 }
 
+async function createCandidato(nombre, partido, descripción, imagen) {
+    var query = `INSERT INTO candidato VALUES ('${nombre}', '${partido}', '${descripción}', '${imagen}')`;
+    try {
+        await pool.query(query);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+async function searchCandidato(nombre, partido) {
+    var query = `SELECT * FROM candidato WHERE nombre = '${nombre}' AND partido = '${partido}'`;
+    var result = await pool.query(query);
+    if (result.rows.length === 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+async function deleteCandidato(nombre, partido) {
+    var query = `DELETE FROM candidato WHERE nombre = '${nombre}' AND partido = '${partido}'`;
+    var result = await pool.query(query);
+    if (result.rows.length === 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+async function updateNombreCandidato(newNombre, nombre, partido) {
+    var query = `UPDATE candidato SET nombre = '${newNombre}' WHERE nombre = '${nombre}' AND partido = '${partido}'`;
+    var result = await pool.query(query);
+    if (result.rows.length === 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 module.exports = {
+    createPersona,
     searchUser,
+    giveAllUsers,
     createUser,
     createEleccion,
-    giveAllUsers,
-    createPersona,
+    createCandidato,
+    searchCandidato,
+    deleteCandidato,
+    updateNombreCandidato,
 }
