@@ -14,9 +14,7 @@ async function createPersona(tipoDocu, numeroDocu, nombre1, nombre2, apellido1, 
 }
 
 async function searchUser(username, password) {
-    // eslint-disable-next-line no-multi-str
-    var query = "SELECT * FROM usuario WHERE (usuario = '" + username + "' AND passwd = '" + password + "')\
-    OR (email = '" + username + "' AND passwd = '" + password + "')";
+    var query = `SELECT * FROM usuario WHERE usuario = '${username}' AND passwd = '${password}'`;
     var result = await pool.query(query);
     return result
 }
@@ -25,10 +23,8 @@ async function giveAllUsers(){
     return await pool.query("SELECT * FROM usuario")
 }
 
-async function createUser(username, email, numeroDocu, password, secret) {
-    // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO VALUES (\
-        '" + username + "', '" + numeroDocu + "', '" + password + "', '" + secret + "')";
+async function createUser(username, numeroDocu, password, secret) {
+    var query = `INSERT INTO VALUES ('${username}', '${numeroDocu}', '${password}', '${secret}')`;
     try {
         await pool.query(query);
         return true;
@@ -38,9 +34,8 @@ async function createUser(username, email, numeroDocu, password, secret) {
 }
 
 async function createEleccion(nombre, fechaInicio, fechaFin) {
-    // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO eleccion(nombre, fechaInicio, fechaFin) VALUES (\
-        '" + nombre + "', '" + fechaInicio + "', '" + fechaFin + "')";
+    var query = `INSERT INTO eleccion (nombre, fechaInicio, fechaFin) VALUES (
+        '${nombre}', '${fechaInicio}', '${fechaFin}')`;
     try {
         await pool.query(query);
         return true;
