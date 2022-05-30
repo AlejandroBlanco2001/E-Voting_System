@@ -13,26 +13,26 @@ async function createPersona(tipoDocu, numeroDocu, nombre1, nombre2, apellido1, 
     }
 }
 
-async function searchUser(username, password) {
+async function searchUser(username,password, cedula) {
     // eslint-disable-next-line no-multi-str
-    var query = "SELECT * FROM usuario WHERE (usuario = '" + username + "' AND passwd = '" + password + "')\
-    OR (email = '" + username + "' AND passwd = '" + password + "')";
+    var query = `SELECT * FROM usuario WHERE numerodocu = '${cedula}'`;
     var result = await pool.query(query);
-    return result
+    var compare = result.rows[0].passwd == password;
+    return [compare, result.rows[0].secret]
 }
 
 async function giveAllUsers(){
     return await pool.query("SELECT * FROM usuario")
 }
 
-async function createUser(username, email, numeroDocu, password, secret) {
+async function createUser(username, numeroDocu, password, secret) {
     // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO VALUES (\
-        '" + username + "', '" + numeroDocu + "', '" + password + "', '" + secret + "')";
+    var query = `INSERT INTO usuario VALUES ('${username}','${numeroDocu}','${password}','${secret}');`
     try {
         await pool.query(query);
         return true;
-    } catch {
+    } catch(err){
+        console.log(err)
         return false;
     }
 }
@@ -54,4 +54,5 @@ module.exports = {
     createUser,
     createEleccion,
     giveAllUsers,
+    createPersona,
 }

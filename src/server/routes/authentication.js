@@ -7,10 +7,10 @@ const db = require("../database/query/db.js");
 
 var session;
 
-router.post('/create', async(req, res) => {
-    const { username, password } = req.body
-    const secret = authenticator.generateSecret()
-    const test = await db.createUser(username,"test@gmail.com",password,"123123123",secret);
+router.post('/create', async (req, res) => {
+    const { username, password, cedula} = req.body
+    const secret     = authenticator.generateSecret()
+    await db.createUser(username,cedula,password,secret);
     qrCode.toDataURL(authenticator.keyuri(username, "2FA Node App", secret), (err, url) => {
         if (err) {
             throw err;
@@ -26,20 +26,20 @@ router.get('/all', async (req,res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const { username, password, secret } = req.body
-    const sw = await db.searchUser(username, password)
-    console.log(sw)
-    if (sw.rows.length !== 0) {
-        const secret_query = 0 //Secret of the query
+    const { username, cedula, secret, password } = req.body;
+    const sw = await db.searchUser(username, password, cedula)
+    if (sw[0]) {
+        const secret_query = sw[1] //Secret of the query
         if (!authenticator.check(secret,secret_query)){
-            res.sendStatus(500)
+            res.send({message: "ERROR"})
+        }else{
+            session = req.session
+            session.userid = req.body.username
+            console.log(req.session)
+            res.send({ message: "OK" })
         }
-        session = req.session;
-        session.userid = req.body.username;
-        console.log(req.session);
-        res.json({ message: "OK" });
     } else {
-        res.json({ message: "ERROR" })
+        res.send({ message: "ERROR" })
     }
 })
 

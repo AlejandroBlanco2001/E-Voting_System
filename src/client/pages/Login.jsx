@@ -10,11 +10,7 @@ import axios from "axios";
 const Login = () => {
   const [error, setError] = useState(false)
   const [data, setData] = useState({})
-  const [open, setOpen] = useState(false)
   const [action, setAction] = useState(true)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  const handleError = () => setError(false)
 
   const navigate = useNavigate()
 
@@ -28,45 +24,49 @@ const Login = () => {
   const sendForm = async (event) => {
     event.preventDefault();
     if(action === true){
-      console.log("Enviando datos..." + data.username + " " + data.password);
+      console.log("Enviando datos..." + data.username + " " + data.password + " " + data.cedula + " " + data.secret);
       await axios
         .post(
           "http://localhost:8000/auth/login",
           {
             username: data.username,
+            cedula: data.cedula,
+            secret: data.secret,
             password: data.password,
           },
           { withCredentials: true }
         )
         .then((res) => {
-          console.log(res)
-          if(res.data.message === "OK"){
-            localStorage.setItem('user', data.username)
-            navigate("../Vote", {replace: true})
-          }else{           
+          if (res.data.message === "OK") {
+            localStorage.setItem("user", data.username);
+            navigate("../Vote", { replace: true });
+          } else {
             swal.fire({
               icon: "error",
               title: "Oops...",
               text: "Something went wrong!",
-              timer: 6000,
+              timer: 8000,
               showConfirmButton: false,
-              footer: 'Maybe you insert your password or user wrong, try again',
-            })
+              footer: "Maybe you insert your password or user wrong, try again",
+            });
           }
         })
-        .catch((err) => {})
+        .catch((err) => {});
     }else{
-      console.log("Enviando datos..." + data.username + " " + data.password);
+      console.log("Enviando datos..." + data.username + " " + data.password + " " + data.cedula + " " + data.secret);
       await axios
         .post(
           "http://localhost:8000/auth/create",
           {
             username: data.username,
+            cedula: data.cedula,
+            secret: data.secret,
             password: data.password,
           },
-          { withCredentials: true}
-        ).then((res) => {
-          console.log(res.data)
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res.data);
           swal.fire({
             icon: "succesfull",
             title: "Welcome",
@@ -77,7 +77,7 @@ const Login = () => {
             imageAlt: "alter",
             showConfirmButton: true,
           });
-        })
+        });
     }
   };
 
@@ -96,6 +96,13 @@ const Login = () => {
             onChange={handleInputChange}
             size="medium"
           ></Input>
+          <h3>Cedula</h3>
+          <Input
+            name="cedula"
+            placeholder="Ingrese su cedula"
+            size="medium"
+            onChange={handleInputChange}
+          ></Input>
           <h3>Contraseña</h3>
           <Input
             name="password"
@@ -104,13 +111,19 @@ const Login = () => {
             size="medium"
             onChange={handleInputChange}
           ></Input>
-          <Button 
-          type="submit" 
-          onClick={() => setAction(true)}>Log in</Button>
-          <Button 
-          type="submit" 
-          onClick={() => setAction(false)}
-          >Register</Button>
+          <h3>Secret</h3>
+          <Input
+            name="secret"
+            placeholder="******"
+            size="medium"
+            onChange={handleInputChange}
+          ></Input>
+          <Button type="submit" onClick={() => setAction(true)}>
+            Log in
+          </Button>
+          <Button type="submit" onClick={() => setAction(false)}>
+            Register
+          </Button>
         </form>
       </div>
     </div>
