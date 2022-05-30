@@ -2,6 +2,7 @@ import "../styles/index.scss";
 import CardVote from "../components/cardVote";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Gov from "../assets/col.svg";
 import { Button } from "react-bootstrap";
 
 const Vote = () => {
@@ -12,12 +13,6 @@ const Vote = () => {
   const isLogged = () => {
     axios.get("http://localhost:8000/auth/checkUser");
   }
-
-  const sendForm = (event) => {
-    axios.post("http://localhost:8000/votes/send",{
-
-    })
-};
 
   useEffect(() => {
     axios
@@ -38,6 +33,9 @@ const Vote = () => {
 
   return (
     <div id="voteSection">
+      <div id="BarranquillaGov">
+        <object data={Gov} alt="LogoGov"></object>
+      </div>
       <div class="candidateList">
         <h2>Selecciona tu candidato</h2>
         {data.map((item, index) => {
@@ -53,10 +51,6 @@ const Vote = () => {
           );
         })}
       </div>
-      <form onSubmit={sendForm}>
-        <Button type="submit" value="Login">Log in</Button>
-        <Button type="submit" value="Register">Register</Button>
-      </form>
     </div>
   );
 };

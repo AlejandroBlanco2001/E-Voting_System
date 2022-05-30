@@ -5,6 +5,7 @@ import swal from 'sweetalert2'
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Gobernacion from "../assets/gobernación.png"
+import Gov from "../assets/col.svg";
 import axios from "axios";
 
 const Login = () => {
@@ -83,6 +84,9 @@ const Login = () => {
 
   return (
     <div>
+      <div id="BarranquillaGov">
+        <object data={Gov} alt="LogoGov"></object>
+      </div>
       <div id="loginForm">
         <div id="imageDecorator">
           <img src={Gobernacion} alt="gobernación"></img>
