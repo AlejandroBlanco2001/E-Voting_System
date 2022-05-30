@@ -13,10 +13,12 @@ async function createPersona(tipoDocu, numeroDocu, nombre1, nombre2, apellido1, 
     }
 }
 
-async function searchUser(username, password) {
-    var query = `SELECT * FROM usuario WHERE usuario = '${username}' AND passwd = '${password}'`;
+async function searchUser(username,password, cedula) {
+    // eslint-disable-next-line no-multi-str
+    var query = `SELECT * FROM usuario WHERE numerodocu = '${cedula}'`;
     var result = await pool.query(query);
-    return result
+    var compare = result.rows[0].passwd == password;
+    return [compare, result.rows[0].secret]
 }
 
 async function giveAllUsers() {
@@ -28,7 +30,8 @@ async function createUser(username, numeroDocu, password, secret) {
     try {
         await pool.query(query);
         return true;
-    } catch {
+    } catch(err){
+        console.log(err)
         return false;
     }
 }

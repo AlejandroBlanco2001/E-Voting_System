@@ -1,65 +1,55 @@
+
 const SHA256 = require('crypto-js/sha256');
+const hex2ascii = require('hex2ascii')
 class Block{
-    constructor(index, timestamp, data, previousHash=""){
-        this.index = index
-        this.timestamp = timestamp
-        this.data = data
-        this.previousHash = previousHash
-        this.hash = this.calculateHash()
-        this.nonce = 0
+    constructor(data){
+        this.hash = null
+        this.height = 0
+        this.body = JSON.stringify(data).toString('hex')
+        this.time = 0
+        this.votes = 0
+        this.previousBlockHash = ''
     }
 
-    calculateHash(){
-        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data)).toString()
+    validate(){
+        const self = this;
+        return new Promise((resolve,reject) => {
+            let currentHash = self.hash;
+            self.hash = SHA256(JSON.stringify({... self, hash: null})).toString()
+            if ( currentHash !== self.hash){
+                return resolve(false)
+            }
+            resolve(true)
+        })
     }
 
-    mineBlock(difficulty){
-        while(this.hash.substring(0,difficulty) !== Array(difficulty+1).join("0")){
-            this.nonce++
-            this.hash = this.calculateHash()
-        }
+    getBlockData(){
+        const self = this;
+        return new Promise((resolve,reject) => {
+            let encodedData = self.body
+            let decodedData = hex2ascii(encodedData)
+            let dataObject = JSON.parse(decodedData)
 
-        console.log("Block mined:" + this.hash);
-    }
-}
-
-class Blockchain{
-
-    constructor(){
-        this.chain = [this.createGenesisBlock()]
-        this.difficulty = 10;
-    }
-
-    createGenesisBlock(){
-        return new Block(0, "01/01/2022", "Genesis block", "0")
-    }
-
-    getLatestBlock(){
-        return this.chain[this.chain.length - 1]
-    }
-
-    addBlock(newBlock){
-        newBlock.previousHash = this.getLatestBlock().hash
-        newBlock.mineBlock(this.difficulty)
-        this.chain.push(newBlock)
-    }
-
-    isChainValid(){
-        for(let i = 1; i < this.chain.length; i++){
-            const currentBlock = this.chain[i]
-            const previosBlock = this.chain[i-1]
-
-            if(currentBlock.hash !== currentBlock.calculateHash()){
-                return false
+            if(dataObject === 'Genesis Block'){
+                reject(new Error('This is the Genesis Block'))
             }
 
-            if(currentBlock.previousHash !== previosBlock.hash){
-                return false
-            }
-        }
-
-        return true
+            resolve(dataObject)
+        })
     }
+
+    toString(){
+        const {hash, height, body, time, previousBlockHash, votes} = this
+        return `Block - 
+        hash: ${hash}
+        height: ${height}
+        body: ${body}
+        time: ${time}
+        previosBlockHash: ${previousBlockHash}
+        votes: ${votes}
+        --------------------------------------` 
+    }
+
 }
 
-module.exports = {Block,Blockchain}
+module.exports = Block
