@@ -66,13 +66,17 @@ const Login = () => {
           },
           { withCredentials: true}
         ).then((res) => {
+          console.log(res.data)
           swal.fire({
-              icon: "succesfull",
-              title: "Welcome",
-              text: "You are registred for the elections!",
-              timer: 6000,
-              showConfirmButton: false,
-            });
+            icon: "succesfull",
+            title: "Welcome",
+            text: "You are registred for the elections!, scan this QR with Google Authenticator",
+            imageUrl: res.data,
+            imageWidth: 400,
+            imageHeight: 400,
+            imageAlt: "alter",
+            showConfirmButton: true,
+          });
         })
     }
   };
