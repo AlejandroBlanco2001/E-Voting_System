@@ -2,8 +2,7 @@ const pool = require('../conn/pool')
 
 async function createPersona(tipoDocu, numeroDocu, nombre1, nombre2, apellido1, apellido2, fecha_nacimiento,
     lugar_nacimiento, direccion, telefono, rol, puestoVot) {
-    // eslint-disable-next-line no-multi-str
-    var query = `INSERT INTO persona VALUES (${tipoDocu}, ${numeroDocu}, ${nombre1}, ${nombre2}, ${apellido1},\
+    var query = `INSERT INTO persona VALUES (${tipoDocu}, ${numeroDocu}, ${nombre1}, ${nombre2}, ${apellido1},
          ${apellido2}, ${fecha_nacimiento}, ${lugar_nacimiento}, ${direccion}, ${telefono},${rol}, ${puestoVot})`;
     try {
         await pool.query(query);
@@ -14,9 +13,7 @@ async function createPersona(tipoDocu, numeroDocu, nombre1, nombre2, apellido1, 
 }
 
 async function searchUser(username, password) {
-    // eslint-disable-next-line no-multi-str
-    var query = "SELECT * FROM usuario WHERE (usuario = '" + username + "' AND passwd = '" + password + "')\
-    OR (email = '" + username + "' AND passwd = '" + password + "')";
+    var query = `SELECT * FROM usuario WHERE usuario = '${username}' AND passwd = '${password}'`;
     var result = await pool.query(query);
     if (result.rows.length === 0) {
         return false;
@@ -25,10 +22,8 @@ async function searchUser(username, password) {
     }
 }
 
-async function createUser(username, email, numeroDocu, password, secret) {
-    // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO VALUES (\
-        '" + username + "', '" + numeroDocu + "', '" + password + "', '" + secret + "')";
+async function createUser(username, numeroDocu, password, secret) {
+    var query = `INSERT INTO VALUES ('${username}', '${numeroDocu}', '${password}', '${secret}')`;
     try {
         await pool.query(query);
         return true;
@@ -38,9 +33,8 @@ async function createUser(username, email, numeroDocu, password, secret) {
 }
 
 async function createEleccion(nombre, fechaInicio, fechaFin) {
-    // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO eleccion(nombre, fechaInicio, fechaFin) VALUES (\
-        '" + nombre + "', '" + fechaInicio + "', '" + fechaFin + "')";
+    var query = `INSERT INTO eleccion (nombre, fechaInicio, fechaFin) VALUES (
+        '${nombre}', '${fechaInicio}', '${fechaFin}')`;
     try {
         await pool.query(query);
         return true;
