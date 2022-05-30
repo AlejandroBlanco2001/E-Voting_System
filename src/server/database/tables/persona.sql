@@ -115,3 +115,75 @@ VALUES
         '123460',
         'admin'
     );
+
+INSERT INTO persona VALUES
+    (
+        'cedula',
+        123461,
+        'Juan',
+        'Pablo',
+        'Herrera',
+        'Gómez',
+        '1985-03-10',
+        'Bogotá',
+        'Calle 13 # 4-56',
+        '3101234567',
+        'ciudadano',
+        3
+    ),
+    (
+        'pasaporte',
+        123462,
+        'Ana',
+        'María',
+        'Pérez',
+        'Gómez',
+        '1987-08-15',
+        'Medellín',
+        'Avenida 123 # 7-8',
+        '3212345678',
+        'ciudadano',
+        4
+    ),
+    (
+        'cedula',
+        123463,
+        'Pedro',
+        'José',
+        'López',
+        'Díaz',
+        '1989-05-20',
+        'Cali',
+        'Calle 45 # 12-3',
+        '3313456789',
+        'ciudadano',
+        5
+    ),
+    (
+        'pasaporte',
+        123464,
+        'María',
+        'Isabel',
+        'González',
+        'Rodríguez',
+        '1990-12-25',
+        'Barranquilla',
+        'Carrera 12 # 34-5',
+        '3414567890',
+        'ciudadano',
+        4
+    ),
+    (
+        'cedula',
+        123465,
+        'Carlos',
+        'Alberto',
+        'Martínez',
+        'Sánchez',
+        '1992-06-30',
+        'Bucaramanga',
+        'Calle 7 # 56-78',
+        '3515678901',
+        'ciudadano',
+        5
+    );

@@ -8,7 +8,7 @@ CREATE TABLE usuario (
 );
 
 INSERT INTO
-    usuario(usuario, email, numeroDocu, passwd, secret)
+    usuario(usuario, numeroDocu, passwd, secret)
 VALUES
     (
         'Juan Perez',

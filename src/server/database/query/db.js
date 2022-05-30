@@ -38,9 +38,8 @@ async function createUser(username, numeroDocu, password, secret) {
 }
 
 async function createEleccion(nombre, fechaInicio, fechaFin) {
-    // eslint-disable-next-line no-multi-str
-    var query = "INSERT INTO eleccion(nombre, fechaInicio, fechaFin) VALUES (\
-        '" + nombre + "', '" + fechaInicio + "', '" + fechaFin + "')";
+    var query = `INSERT INTO eleccion (nombre, fechaInicio, fechaFin) VALUES (
+        '${nombre}', '${fechaInicio}', '${fechaFin}')`;
     try {
         await pool.query(query);
         return true;
